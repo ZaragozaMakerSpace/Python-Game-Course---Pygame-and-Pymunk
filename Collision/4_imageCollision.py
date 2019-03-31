@@ -106,6 +106,9 @@ player.set_pos(200, 200);
 platforms.add( base )
 players.add( player )
 
+player2 = Player('../rsc/Player/Pilot/running/frame_',6 )
+player2.set_pos(300, 300)
+
 
 while True: # main game loop 
 	screen.blit( background_image, [0,0] )
@@ -114,8 +117,13 @@ while True: # main game loop
 	player.move() 
 	player.update()
 
+	player2.move() 
+	player2.update()
+
 	base.draw( screen )
 	player.draw(screen)
+
+	player2.draw(screen)
 
 	
 	olist = numpy.array(player.mask.outline())
@@ -125,6 +133,7 @@ while True: # main game loop
 
 	offset = (base.x - player.x, base.y - player.y)
 	result =  player.mask.overlap(base.mask, offset) 
+	result =  player2.mask.overlap(base.mask, offset) 
 	
 	if result:
 		print result
